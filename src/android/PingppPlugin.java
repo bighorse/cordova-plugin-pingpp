@@ -36,13 +36,13 @@ public class PingppPlugin extends CordovaPlugin {
         if (requestCode == REQUEST_CODE_PAYMENT) {
             if (resultCode == android.app.Activity.RESULT_OK) {
                 String result = data.getExtras().getString("pay_result");
-                //String errorMsg = data.getExtras().getString("error_msg"); // 错误信息
-                //String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
+                String errorMsg = data.getExtras().getString("error_msg"); // 错误信息
+                String extraMsg = data.getExtras().getString("extra_msg"); // 错误信息
 
                 if(result.equals("success")){
                     callbackContext.success(result);
                 }else {
-                    callbackContext.error(result);
+                    callbackContext.error(errorMsg+":"+extraMsg);
                 }
             } else if (resultCode == android.app.Activity.RESULT_CANCELED) {
                 callbackContext.error("cancel");
